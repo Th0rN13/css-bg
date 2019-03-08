@@ -1,0 +1,32 @@
+*
+  padding: 0
+  margin: 0
+  box-sizing: border-box
+  &:focus
+      outline: none;
+
+body
+  font-family: Arial, sans-serif;
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  height: 100%
+  justify-content: space-between
+
+a
+  text-decoration: none
+  color: #4a4b4b
+
+.container
+  margin-left: auto
+  margin-right: auto
+  @media screen and (max-width:767px)
+    width: 100%
+  @media screen and (min-width:768px)  and (max-width:991px)
+    width: 720px
+  @media screen and (min-width:992px)  and (max-width:1199px)
+    width: 920px
+  @media screen and (min-width:1200px)
+    width: 1170px
+
+
