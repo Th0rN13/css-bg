@@ -2,19 +2,20 @@
 * Modules
 */
 let
-  gulp = require('gulp'),
-  prefixer = require('gulp-autoprefixer'),
-  uglify = require('gulp-uglify'),
-  sass = require('gulp-sass'),
-  sourcemaps = require('gulp-sourcemaps'),
-  fileinclude = require('gulp-file-include'),
-  cssmin = require('gulp-minify-css'),
-  imagemin = require('gulp-imagemin'),
-  pngquant = require('imagemin-pngquant'),
-  rimraf = require('rimraf'),
-  browserSync = require("browser-sync").create(),
-  pug = require('gulp-pug'),
-  plumber = require('gulp-plumber');
+  gulp 				  = require('gulp'),
+  prefixer 		  = require('gulp-autoprefixer'),
+  uglify 		    = require('gulp-uglify'),
+  sass 			    = require('gulp-sass'),
+  sourcemaps 	  = require('gulp-sourcemaps'),
+  fileinclude   = require('gulp-file-include'),
+  cssmin        = require('gulp-minify-css'),
+  imagemin      = require('gulp-imagemin'),
+  pngquant      = require('imagemin-pngquant'),
+  rimraf        = require('rimraf'),
+  browserSync   = require("browser-sync").create(),
+  pug           = require('gulp-pug'),
+  plumber       = require('gulp-plumber'),
+  replace       = require('gulp-replace');
 
 let path = {
   build: {
@@ -55,6 +56,7 @@ gulp.task('html:build', function () {
   return gulp.src(path.src.pug)
     .pipe(plumber())
     .pipe(fileinclude({ indent: true }))
+    .pipe(replace(/\/\/#.*$/gm, ''))
     .pipe(pug())
     .pipe(gulp.dest(path.build.html))
     .pipe(browserSync.stream());
