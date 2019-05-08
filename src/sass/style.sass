@@ -2,3 +2,28 @@
 
 @import "parts/_vars"
 @import "parts/common"
+
+.wrapper
+  width: 100vw
+  height: 100vh
+  display: block
+  overflow: hidden
+  z-index: 5
+  &-element
+    width: 10%
+    height: 10%
+    display: inline-block
+    z-index: 5
+    &+.back
+      position: absolute
+      top: 0
+      left: 0
+      width: 100vw
+      height: 100vh
+      z-index: 4
+    $blocks: 100
+    @while $blocks > 0
+      &:hover:nth-child(#{$blocks})+.back
+        background-color: rgba($blocks, $blocks, 8, 1);
+      $blocks: $blocks - 1
+
