@@ -10,7 +10,7 @@ Input change svg on background via `~` CSS selector
 
 CSS change color of svg via SASS variables depending on row and column of hovered block (SASS)
 
-Some prepared SVG paths assigned via SASS depending of hovered block
+Some prepared SVG paths assigned via SASS depending of hovered block (works only in chomium)
 
 # TODO
 
