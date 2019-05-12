@@ -3,27 +3,83 @@
 @import "parts/_vars"
 @import "parts/common"
 
-.wrapper
+$number: 10
+
+input
+  -webkit-appearance: none
+  border: none
+
+.wrapper-content
+  z-index: 10
+  width: 100vw
+  height: 100vh
+  display: flex
+  justify-content: center
+  align-items: center
+  background: transparent
+  h1
+    font-size: 72px
+    color: #444444
+    background: transparent
+
+.wrapper-front
+  position: absolute
   width: 100vw
   height: 100vh
   display: block
   overflow: hidden
-  z-index: 5
-  &-element
-    width: 10%
-    height: 10%
-    display: inline-block
-    z-index: 5
-    &+.back
-      position: absolute
-      top: 0
-      left: 0
-      width: 100vw
-      height: 100vh
-      z-index: 4
-    $blocks: 100
-    @while $blocks > 0
-      &:hover:nth-child(#{$blocks})+.back
-        background-color: rgba($blocks, $blocks, 8, 1);
-      $blocks: $blocks - 1
+  z-index: 20
+.element
+  position: relative
+  width: 100%/$number
+  height: 100%/$number
+  display: inline-block
+
+
+
+.wrapper-back
+  position: absolute
+  width: 100vw
+  height: 100vh
+  display: block
+  overflow: hidden
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+.background
+  position: relative
+  height: 100%
+  width: 100%
+.helper
+  position: absolute
+svg
+  transition: 3s
+  path
+    transition: d 2s, stroke 2s, stroke-dasharray 1s, stroke-width 1s
+.back-input
+  cursor: default
+  display: none
+
+
+$index: $number*$number
+$col: $number
+$row: $number
+@while $index > 0
+  @if $col == 0
+    $col: $number
+    $row: $row - 1
+  #id#{$index}:hover
+    &~.background
+      .svg-img
+        transform: translate(#{($col - 1 - $number/2)*9}vw, #{($row - 1 - $number/2)*9}vh)
+        path
+          stroke-width: 4
+          stroke-dasharray: 0 8
+          $red: ($col - 1) * 255 / 10
+          $blue: ($number - $col + 1) * 255 / 10
+          $green: ($row - 1) * 255 / 10
+          stroke: rgb($red, $green, $blue)
+  $col: $col - 1
+  $index: $index - 1
 
