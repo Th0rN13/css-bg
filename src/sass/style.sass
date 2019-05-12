@@ -1,6 +1,7 @@
 /* import styles */
 
-@import "parts/_vars"
+@import "parts/vars"
+@import "parts/svg"
 @import "parts/common"
 
 $number: 10
@@ -51,16 +52,34 @@ input
   position: relative
   height: 100%
   width: 100%
-.helper
+.svg-img
   position: absolute
-svg
   transition: 3s
+  width: 700%
+  height: 700%
+  top: -300%
+  left: -300%
   path
+    d: path($path1)
     transition: d 2s, stroke 2s, stroke-dasharray 1s, stroke-width 1s
+    stroke-width: 0.8
+    fill: none
+    stroke: #777777
+    stroke-dasharray: 0 6
+    stroke-linecap: round
+    animation-name: rotation
+    animation-duration: 200s
+    animation-iteration-count: infinite
+    transform-origin: center
 .back-input
   cursor: default
   display: none
 
+@keyframes rotation
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
 
 $index: $number*$number
 $col: $number
@@ -74,12 +93,21 @@ $row: $number
       .svg-img
         transform: translate(#{($col - 1 - $number/2)*9}vw, #{($row - 1 - $number/2)*9}vh)
         path
-          stroke-width: 4
-          stroke-dasharray: 0 8
           $red: ($col - 1) * 255 / 10
           $blue: ($number - $col + 1) * 255 / 10
           $green: ($row - 1) * 255 / 10
           stroke: rgb($red, $green, $blue)
+          @if $col < $number/2
+            @if $row < $number/2
+              d: path($path1)
+            @elseif
+              d: path($path2)
+          @elseif
+            @if $row < $number/2
+              d: path($path3)
+            @elseif
+              d: path($path4)
+
   $col: $col - 1
   $index: $index - 1
 
