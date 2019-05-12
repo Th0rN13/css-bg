@@ -15,3 +15,11 @@ Some prepared SVG paths assigned via SASS depending of hovered block
 # TODO
 
 Generate some paths, to smooth animation between SVG paths
+
+# Based on my pug template
+
+https://github.com/Th0rN13/pug-template
+
+# Link to demo
+
+https://th0r.ru/css-bg/
